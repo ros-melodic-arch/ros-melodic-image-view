@@ -60,7 +60,7 @@ build() {
 	[ -f /opt/ros/melodic/setup.bash ] && source /opt/ros/melodic/setup.bash
 
 	# Fix Boost Signals
-	sed -i -e 's/signals//g' image_pipeline-release-release-melodic-image_view-1.12.23-0/CMakeLists.txt
+	sed -i -e 's/signals//g' ${_dir}/CMakeLists.txt
 
 	# Create the build directory.
 	[ -d ${srcdir}/build ] || mkdir ${srcdir}/build
