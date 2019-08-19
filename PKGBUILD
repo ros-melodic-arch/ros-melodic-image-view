@@ -57,7 +57,7 @@ sha256sums=('3c2309d421acf354ca69a7c814ceec7c8b24732c31a7f1c47a055aedd95cb1c4'
 
 prepare() {
   cd "${srcdir}/${_dir}"
-  patch -uN CMakeLists.txt ../../../CMakeLists-opencv.patch || return 1
+  patch -uN CMakeLists.txt "${srcdir}/CMakeLists-opencv.patch" || return 1
 }
 
 build() {
