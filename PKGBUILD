@@ -6,7 +6,7 @@ url='https://wiki.ros.org/image_view'
 pkgname='ros-melodic-image-view'
 pkgver='1.13.0'
 arch=('any')
-pkgrel=1
+pkgrel=2
 license=('BSD')
 
 ros_makedepends=(
@@ -73,7 +73,11 @@ build() {
 	/usr/share/ros-build-tools/fix-python-scripts.sh -v 3 ${srcdir}/${_dir}
 
 	# Build the project.
-	cmake ${srcdir}/${_dir} \
+       # Fix issue with missing <hb.h> due to pango changes
+       # Upstream issue: https://github.com/ros-perception/image_pipeline/issues/456
+       export CXXFLAGS="${CXXFLAGS} -isystem /usr/include/harfbuzz"
+
+       cmake ${srcdir}/${_dir} \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCATKIN_BUILD_BINARY_PACKAGE=ON \
 		-DCMAKE_INSTALL_PREFIX=/opt/ros/melodic \
